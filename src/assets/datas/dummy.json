@@ -1,0 +1,15 @@
+{
+    "users": [
+       {
+          "id": 1,
+          "name": "지석",
+          "profileImage": "ProfileIcon"
+       },
+       {
+          "id": 2,
+          "name": "윤서",
+          "profileImage": "ProfileIcon"
+       }
+    ]
+ }
+ 
