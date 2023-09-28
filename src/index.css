@@ -9,6 +9,9 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+html{
+  background-color: gray;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
