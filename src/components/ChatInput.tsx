@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Camera from '../assets/images/Camera.svg'; // Replace 'image1.svg' with the actual name of your image.
+import Camera from '../assets/images/Camera.svg'; 
 import Gallery from '../assets/images/Gallery.svg';
 import Mic from '../assets/images/Microphone.svg';
 import Smile from '../assets/images/Sticker-Smile.svg';
@@ -23,52 +23,51 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
   
     return (
       <StyledInputBar onSubmit={handleSendMessage}>
-        <CameraIcon />
-        <GalleryIcon />
-  
         <TextInputContainer>
+          <CameraIcon />
+          <GalleryIcon />
           <Input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Enter your message..."
+
           />
+          <MicIcon />
+          <SmileIcon />
         </TextInputContainer>
-  
-        <MicIcon />
-        <SmileIcon />
       </StyledInputBar>
     );
   };
-  
+    
   
   export default ChatInput;
   
-  
-const StyledInputBar = styled.form`
-  display: flex; // set to flex
-  align-items: center; // vertically align items in the center
-  padding: 0 10px; // some padding to give some space
+  const StyledInputBar = styled.form`
+  display: flex;
+  justify-content: center;
   width: 100%;
   background: white;
-  gap: 10px; // space between items in the flex container
 `;
 
 const TextInputContainer = styled.div`
-  flex-grow: 1; // this makes sure it takes up all available space
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  width: 100%; 
   height: 44px;
+  padding: 0 10px; 
   background: #F1F1F1;
   border-radius: 22px;
   border: 1px #CCCCCC solid;
 `;
 
 const Input = styled.input`
-  width: 100%;
+  flex-grow: 1;
+  margin: 0 10px;
   height: 100%;
   border: none;
   outline: none;
-  padding-left: 15px; // Adjust padding so text doesn't start at the very edge
   border-radius: 22px;
-  background: #F1F1F1;
+  background: transparent; 
   &:focus {
     box-shadow: none;
   }
@@ -77,6 +76,7 @@ const Input = styled.input`
 const CameraIcon = styled.img.attrs({ src: Camera })`
   width: 24px;
   height: 24px;
+  margin-right:12px
 `;
 
 const GalleryIcon = styled.img.attrs({ src: Gallery })`
@@ -92,6 +92,8 @@ const MicIcon = styled.img.attrs({ src: Mic })`
 const SmileIcon = styled.img.attrs({ src: Smile })`
   width: 24px;
   height: 24px;
+  margin-left:12px
+
 `;
 
-// ... Rest of the code remains unchanged.
+
