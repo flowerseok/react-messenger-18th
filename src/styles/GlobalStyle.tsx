@@ -13,15 +13,13 @@ const GlobalStyle = createGlobalStyle`
 html, body {
   width: 100%;
   height: 100%;
-  font-family: 'Pretendard', sans-serif;  /* or any font you prefer */
+  font-family: 'Pretendard', sans-serif;
 }
 
-#app {  /* Assuming your root div has an id of "app" */
-  width: 375px;
-  height: 812px;
-  margin: 0 auto;   /* Center the chatroom horizontally */
+#app {
+  margin: 0 auto;
   background-color: white;
-  overflow: hidden;  /* Ensures nothing overflows the specified dimensions */
+  overflow: hidden;
 }
 
 
