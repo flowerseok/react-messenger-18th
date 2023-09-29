@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import {ReactComponent as Camera} from '../assets/images/Camera.svg'; 
-import {ReactComponent as Gallery} from '../assets/images/Gallery.svg';
-import {ReactComponent as Mic} from '../assets/images/Microphone.svg';
-import {ReactComponent as Smile} from '../assets/images/Sticker-Smile.svg';
-import {ReactComponent as Low} from '../assets/images/Indicator_low.svg';
-
+import { ReactComponent as Camera } from '../assets/images/Camera.svg';
+import { ReactComponent as Gallery } from '../assets/images/Gallery.svg';
+import { ReactComponent as Mic } from '../assets/images/Microphone.svg';
+import { ReactComponent as Smile } from '../assets/images/Sticker-Smile.svg';
+import { ReactComponent as Low } from '../assets/images/Indicator_low.svg';
 
 interface ChatInputProps {
   onSend: (message: string) => void;
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
-    const [inputValue, setInputValue] = useState('');
-  
-    const handleSendMessage = (e: React.FormEvent) => {
-      e.preventDefault();
-      if (inputValue.trim()) {
-        onSend(inputValue);
-        setInputValue('');
-      }
-    };
-  
-    return (
-        <InputContainer>
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      onSend(inputValue);
+      setInputValue('');
+    }
+  };
+
+  return (
+    <InputContainer>
       <StyledInputBar onSubmit={handleSendMessage}>
         <TextInputContainer>
           <CameraIcon />
@@ -32,40 +31,36 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
           <Input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-
           />
           <MicIcon />
           <SmileIcon />
         </TextInputContainer>
-        
       </StyledInputBar>
       <LowIcon />
-      </InputContainer>
-    );
-  };
-    
-  
-  export default ChatInput;
-  
-  const InputContainer = styled.div`
+    </InputContainer>
+  );
+};
+
+export default ChatInput;
+
+const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
 `;
-  const StyledInputBar = styled.form`
+
+const StyledInputBar = styled.form`
   display: flex;
   justify-content: center;
-  width: 100%;
   background: white;
 `;
 
 const TextInputContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  width: 100%; 
+  justify-content: space-between;
+  width: 100%;
   height: 44px;
-  padding: 0 10px; 
+  padding: 0 10px;
   background: #F1F1F1;
   border-radius: 22px;
   border: 1px #CCCCCC solid;
@@ -78,7 +73,7 @@ const Input = styled.input`
   border: none;
   outline: none;
   border-radius: 22px;
-  background: transparent; 
+  background: transparent;
   &:focus {
     box-shadow: none;
   }
@@ -87,7 +82,7 @@ const Input = styled.input`
 const CameraIcon = styled(Camera)`
   width: 24px;
   height: 24px;
-  margin-right:12px
+  margin-right: 12px;
 `;
 
 const GalleryIcon = styled(Gallery)`
@@ -103,12 +98,10 @@ const MicIcon = styled(Mic)`
 const SmileIcon = styled(Smile)`
   width: 24px;
   height: 24px;
-  margin-left:12px
-
+  margin-left: 12px;
 `;
 
-
 const LowIcon = styled(Low)`
-width: 100%;
-height: 21px;
+  width: 100%;
+  height: 21px;
 `;

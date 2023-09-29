@@ -1,4 +1,3 @@
-// components/ChatHeader.tsx
 import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as CallIcons } from '../assets/images/Phone.svg';
@@ -34,8 +33,6 @@ const ChatHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 100%;
   padding: 10px 18px 10px 12px;
   background: #ffffff
   backdrop-filter: blur(4px);
