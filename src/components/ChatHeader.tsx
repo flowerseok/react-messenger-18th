@@ -10,6 +10,7 @@ interface ChatHeaderProps {
 }
 
   const ChatHeader: React.FC<ChatHeaderProps> = ({ chatName, onSwitchPosition }) => {
+    
     return (
       <ChatHeaderContainer onClick={onSwitchPosition}>
           <Wrapper>
@@ -28,6 +29,7 @@ interface ChatHeaderProps {
     );
 };
 export default ChatHeader;
+
 const ChatHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -35,9 +37,10 @@ const ChatHeaderContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px 18px 10px 12px;
-  background: rgba(255, 255, 255, 0.90);
+  background: #ffffff
   backdrop-filter: blur(4px);
   gap: 12px;
+
 `;
 
 const Wrapper = styled.div`
@@ -50,7 +53,6 @@ const Wrapper = styled.div`
 const UserName = styled.div`
   color: #101010;
   font-size: 18px;
-  font-family: 'Pretendard', sans-serif;
   font-weight: 600;
   line-height: 18px;
   word-wrap: break-word;

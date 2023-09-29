@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ChatHeader from './ChatHeader';
 import ChatInput from './ChatInput';
 import usersData from '../assets/datas/dummy.json';
+import StatusBar from './StatusBar'
 import styled from 'styled-components';
 import { ReactComponent as ProfileIcon } from '../assets/images/Profile-Icon.svg';
 
@@ -18,17 +19,19 @@ const ChatRoom: React.FC = () => {
   const savedMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
   const [messages, setMessages] = useState<Message[]>(savedMessages);
 
-  const [currentUser, setCurrentUser] = useState(usersData.users[0]);
+  const [currentUser, setCurrentUser] = useState(usersData.users[0]);//초기엔 유저 1로 세팅
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
+//스크롤바 언제나 하단 고정
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
     }
   }, [messages]);
+
   useEffect(() => {
     localStorage.setItem('chatMessages', JSON.stringify(messages));
   }, [messages]);
+  // localStorage.clear();
 //메시지별 id에 시간을 부여해, 기존의 시간과 같으면 시간표시와 프로필 사진을 보이지 않게 하고, 시간이 바뀔 때만 시간표시와 프로필 사진 출력
   const handleSendMessage = (content: string) => {
     const newMessage: Message = {
@@ -58,6 +61,7 @@ const ChatRoom: React.FC = () => {
   const oppositeUser = currentUser.name === usersData.users[0].name ? usersData.users[1] : usersData.users[0];
 return (
   <ChatRoomContainer>
+    <StatusBar />
     <ChatHeader chatName={oppositeUser.name} onSwitchPosition={handleSwitchPosition} />
     
     <MessageList ref={messagesEndRef}>
@@ -69,9 +73,9 @@ return (
 <MessageWrapper key={msg.id} sender={msg.sender} currentUser={currentUser.name}>
   {!isCurrentUser && shouldDisplayProfile && (
     <ProfileContainer>
-      <div>
+      {/* <div>
         <Username>{msg.sender}</Username>
-      </div>
+      </div> */}
       <ProfileImage as={ProfileIcon} />
     </ProfileContainer>
   )}
@@ -119,7 +123,7 @@ const ChatRoomContainer = styled.div`
   margin: 40px auto;
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 25px;
+  padding: 5px;
   min-height: 90vh;
 `;
 
@@ -138,7 +142,7 @@ const MessageBubble = styled.div<{ sender: string; currentUser: string; shouldDi
   border-radius: 20px;
   background-color: ${props => (props.sender === props.currentUser ? "#101010" : "#F1F1F1")};
   color: ${props => (props.sender === props.currentUser ? "#F1F1F1" : "#101010")};
-  margin-left: ${props => (!props.shouldDisplayProfile && props.sender !== props.currentUser) ? "41px" : "0"};
+  margin-left: ${props => (!props.shouldDisplayProfile && props.sender !== props.currentUser) ? "44px" : "0"};
   font-size: 14px;
   font-weight: 400;
   line-height: 19.60px;
@@ -159,17 +163,9 @@ const ProfileImage = styled.div`
   }
 `;
 
-const Username = styled.div`
-  color: #101010;
-  font-size: 6px;
-  font-weight: 600;
-  line-height: 13px;
-`;
-
 const Time = styled.div`
   color: #909090;
   font-size: 7px;
-  font-family: 'Pretendard';
   font-weight: 500;
   line-height: 10px;
   margin-top: 12px;

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Camera from '../assets/images/Camera.svg'; 
-import Gallery from '../assets/images/Gallery.svg';
-import Mic from '../assets/images/Microphone.svg';
-import Smile from '../assets/images/Sticker-Smile.svg';
+import {ReactComponent as Camera} from '../assets/images/Camera.svg'; 
+import {ReactComponent as Gallery} from '../assets/images/Gallery.svg';
+import {ReactComponent as Mic} from '../assets/images/Microphone.svg';
+import {ReactComponent as Smile} from '../assets/images/Sticker-Smile.svg';
+import {ReactComponent as Low} from '../assets/images/Indicator_low.svg';
+
 
 interface ChatInputProps {
   onSend: (message: string) => void;
@@ -22,6 +24,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
     };
   
     return (
+        <InputContainer>
       <StyledInputBar onSubmit={handleSendMessage}>
         <TextInputContainer>
           <CameraIcon />
@@ -34,13 +37,21 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
           <MicIcon />
           <SmileIcon />
         </TextInputContainer>
+        
       </StyledInputBar>
+      <LowIcon />
+      </InputContainer>
     );
   };
     
   
   export default ChatInput;
   
+  const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
   const StyledInputBar = styled.form`
   display: flex;
   justify-content: center;
@@ -73,23 +84,23 @@ const Input = styled.input`
   }
 `;
 
-const CameraIcon = styled.img.attrs({ src: Camera })`
+const CameraIcon = styled(Camera)`
   width: 24px;
   height: 24px;
   margin-right:12px
 `;
 
-const GalleryIcon = styled.img.attrs({ src: Gallery })`
+const GalleryIcon = styled(Gallery)`
   width: 24px;
   height: 24px;
 `;
 
-const MicIcon = styled.img.attrs({ src: Mic })`
+const MicIcon = styled(Mic)`
   width: 24px;
   height: 24px;
 `;
 
-const SmileIcon = styled.img.attrs({ src: Smile })`
+const SmileIcon = styled(Smile)`
   width: 24px;
   height: 24px;
   margin-left:12px
@@ -97,3 +108,7 @@ const SmileIcon = styled.img.attrs({ src: Smile })`
 `;
 
 
+const LowIcon = styled(Low)`
+width: 100%;
+height: 21px;
+`;
