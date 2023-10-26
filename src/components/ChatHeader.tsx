@@ -11,9 +11,9 @@ interface ChatHeaderProps {
   const ChatHeader: React.FC<ChatHeaderProps> = ({ chatName, onSwitchPosition }) => {
     
     return (
-      <ChatHeaderContainer onClick={onSwitchPosition}>
+      <ChatHeaderContainer >
           <Wrapper>
-            <ArrowLeftIcon />
+            <ArrowLeftIcon onClick={onSwitchPosition} />
             <UserName>{chatName}</UserName>
           </Wrapper>
           <Icons>
@@ -33,11 +33,10 @@ const ChatHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 18px 10px 12px;
-  background: #ffffff
+  padding: 10px 0px 10px 3px;
+  background: rgba(255, 255, 255, 0.90);
   backdrop-filter: blur(4px);
   gap: 12px;
-
 `;
 
 const Wrapper = styled.div`

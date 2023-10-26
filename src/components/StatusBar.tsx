@@ -32,7 +32,7 @@ function getCurrentTime(): string {
 }
 
 const StatusBarContainer = styled.div`
-  padding: 10px 18px 10px 12px;
+  padding: 10px 0px 10px 1px;
   background: #ffffff;
   backdrop-filter: blur(5px);
   display: flex;

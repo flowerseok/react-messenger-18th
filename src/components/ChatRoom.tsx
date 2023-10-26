@@ -117,7 +117,7 @@ const ChatRoomContainer = styled.div`
   margin: 0px auto;
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 5px;
+  padding: 10px;
   min-height: 100vh;
 `;
 
@@ -125,8 +125,8 @@ const MessageWrapper = styled.div<{ sender: string; currentUser: string }>`
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.sender === props.currentUser ? "row-reverse" : "row")};
-  gap: 12px;
-  margin: 12px 0;
+  gap: 4px;
+  margin: 4px 0;
   max-width: 100%;
   align-self: ${props => (props.sender === props.currentUser ? "flex-end" : "flex-start")};
 `;
@@ -136,13 +136,14 @@ const MessageBubble = styled.div<{ sender: string; currentUser: string; shouldDi
   border-radius: 20px;
   background-color: ${props => (props.sender === props.currentUser ? "#101010" : "#F1F1F1")};
   color: ${props => (props.sender === props.currentUser ? "#F1F1F1" : "#101010")};
-  margin-left: ${props => (!props.shouldDisplayProfile && props.sender !== props.currentUser) ? "44px" : "0"};
+  margin-left: ${props => (!props.shouldDisplayProfile && props.sender !== props.currentUser) ? "36px" : "0"};
   font-size: 14px;
   font-weight: 400;
   line-height: 19.60px;
   box-sizing: border-box;
   max-width: fit-content;
   word-break: break-all;
+  white-space: pre-wrap;
 `;
 
 const ProfileImage = styled.div`
@@ -157,5 +158,5 @@ const Time = styled.div`
   font-size: 7px;
   font-weight: 500;
   line-height: 10px;
-  margin-top: 12px;
+  margin-top: 30px;
 `;
