@@ -3,18 +3,24 @@ import styled from 'styled-components';
 import { ReactComponent as CallIcons } from '../assets/images/Phone.svg';
 import { ReactComponent as VideoIcons } from '../assets/images/Videocamera.svg';
 import { ReactComponent as LeftArrowIcon } from '../assets/images/Arrow-Left.svg';
+import { useNavigate } from 'react-router-dom';  
+
 interface ChatHeaderProps {
   chatName: string;
   onSwitchPosition?: () => void;
 }
 
   const ChatHeader: React.FC<ChatHeaderProps> = ({ chatName, onSwitchPosition }) => {
-    
+    const navigate = useNavigate();
+
+    const navigateToFriendList = () => {
+        navigate("/friends");
+  };
     return (
-      <ChatHeaderContainer onClick={onSwitchPosition}>
+      <ChatHeaderContainer >
           <Wrapper>
-            <ArrowLeftIcon />
-            <UserName>{chatName}</UserName>
+            <ArrowLeftIcon onClick={navigateToFriendList} />
+            <UserName onClick={onSwitchPosition}>{chatName}</UserName>
           </Wrapper>
           <Icons>
             <IconWrapper>
@@ -33,11 +39,10 @@ const ChatHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 18px 10px 12px;
-  background: #ffffff
+  padding: 10px 0px 10px 3px;
+  background: rgba(255, 255, 255, 0.90);
   backdrop-filter: blur(4px);
   gap: 12px;
-
 `;
 
 const Wrapper = styled.div`
