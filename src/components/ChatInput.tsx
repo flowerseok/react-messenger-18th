@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
 import { ReactComponent as Camera } from '../assets/images/Camera.svg';
 import { ReactComponent as Gallery } from '../assets/images/Gallery.svg';
 import { ReactComponent as Mic } from '../assets/images/Microphone.svg';
 import { ReactComponent as Smile } from '../assets/images/Sticker-Smile.svg';
-import { ReactComponent as Low } from '../assets/images/Indicator_low.svg';
 
 interface ChatInputProps {
   onSend: (message: string) => void;
@@ -36,7 +34,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
           <SmileIcon />
         </TextInputContainer>
       </StyledInputBar>
-      <LowIcon />
     </InputContainer>
   );
 };
@@ -101,7 +98,4 @@ const SmileIcon = styled(Smile)`
   margin-left: 12px;
 `;
 
-const LowIcon = styled(Low)`
-  width: 100%;
-  height: 21px;
-`;
+
