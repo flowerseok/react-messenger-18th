@@ -3,25 +3,30 @@ import styled from 'styled-components';
 import { ReactComponent as CallIcons } from '../assets/images/Phone.svg';
 import { ReactComponent as VideoIcons } from '../assets/images/Videocamera.svg';
 import { ReactComponent as LeftArrowIcon } from '../assets/images/Arrow-Left.svg';
-import { useNavigate } from 'react-router-dom';  
+import { useNavigate, useLocation } from 'react-router-dom';  
 
 interface ChatHeaderProps {
   chatName: string;
   onSwitchPosition?: () => void;
 }
 
-  const ChatHeader: React.FC<ChatHeaderProps> = ({ chatName, onSwitchPosition }) => {
-    const navigate = useNavigate();
+const ChatHeader: React.FC<ChatHeaderProps> = ({ chatName, onSwitchPosition }) => {
+    
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const navigateToFriendList = () => {
-        navigate("/friends");
+  const navigateToFriendList = () => {
+      // navigate("/chatlist");
+      navigate(-1);
   };
-    return (
-      <ChatHeaderContainer >
-          <Wrapper>
-            <ArrowLeftIcon onClick={navigateToFriendList} />
-            <UserName onClick={onSwitchPosition}>{chatName}</UserName>
-          </Wrapper>
+  const isChatPage = location.pathname.startsWith('/chat/');
+  return (
+    <ChatHeaderContainer>
+        <Wrapper>
+          {isChatPage && <ArrowLeftIcon onClick={navigateToFriendList} />}
+          <UserName onClick={onSwitchPosition}>{chatName}</UserName>
+        </Wrapper>
+        {isChatPage && (
           <Icons>
             <IconWrapper>
               <CallIcon />
@@ -30,10 +35,10 @@ interface ChatHeaderProps {
               <VideoIcon />
             </IconWrapper>
           </Icons>
-      </ChatHeaderContainer>
-    );
+        )}
+    </ChatHeaderContainer>
+  );
 };
-export default ChatHeader;
 
 const ChatHeaderContainer = styled.div`
   display: flex;
@@ -50,7 +55,6 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 4px; 
 `;
-
 
 const UserName = styled.div`
   color: #101010;
@@ -82,7 +86,10 @@ const VideoIcon = styled(VideoIcons)`
   width: 24px;
   height: 24px;
 `;
+
 const ArrowLeftIcon = styled(LeftArrowIcon)`
   width: 24px;
   height: 24px;
 `;
+
+export default ChatHeader;
