@@ -1,5 +1,10 @@
 {
     "users": [
+      {
+         "id": 0,
+         "name": "최윤서",
+         "profileImage": "ProfileIcon"
+      },
        {
           "id": 1,
           "name": "지석",
@@ -7,9 +12,19 @@
        },
        {
           "id": 2,
-          "name": "윤서",
+          "name": "형찬",
           "profileImage": "ProfileIcon"
-       }
+       },
+       {
+         "id": 3,
+         "name": "정민",
+         "profileImage": "ProfileIcon"
+      },
+      {
+         "id": 4,
+         "name": "태영",
+         "profileImage": "ProfileIcon"
+      }
     ]
  }
  
