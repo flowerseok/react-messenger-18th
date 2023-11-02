@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import ChatHeader from './ChatHeader';
-import ChatInput from './ChatInput';
+import ChatHeader from '../components/ChatHeader';
+import ChatInput from '../components/ChatInput';
 import usersData from '../assets/datas/dummy.json';
-import StatusBar from './StatusBar';
+import StatusBar from '../components/StatusBar';
 import styled from 'styled-components';
 import { ReactComponent as ProfileIcon } from '../assets/images/Profile-Icon.svg';
+import { useParams } from 'react-router-dom';
 
 interface Message {
   id: number;
@@ -13,11 +14,24 @@ interface Message {
   timestamp: string;
   displayTime: boolean;
 }
+interface ChatRoomParams {
+  friendId: string;
+  [key: string]: string | undefined;
+}
 
 const ChatRoom: React.FC = () => {
-  const savedMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
-  const [messages, setMessages] = useState<Message[]>(savedMessages);
+
+  const getLocalStorageKey = () => {
+    return `chatMessages_${friendId}`;
+  }  
+
+  const { friendId } = useParams<ChatRoomParams>();
+  const selectedFriend = usersData.users.find(user => user.id.toString() === friendId) || usersData.users[0];
   const [currentUser, setCurrentUser] = useState(usersData.users[0]);
+  
+  const savedMessages = JSON.parse(localStorage.getItem(getLocalStorageKey()) || '[]');
+  const friendMessages = savedMessages.filter((msg: Message) => msg.sender === selectedFriend.name || msg.sender === currentUser.name);
+  const [messages, setMessages] = useState<Message[]>(friendMessages);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -28,8 +42,8 @@ const ChatRoom: React.FC = () => {
   }, [messages]);
 
   useEffect(() => {
-    localStorage.setItem('chatMessages', JSON.stringify(messages));
-  }, [messages]);
+    localStorage.setItem(getLocalStorageKey(), JSON.stringify(messages));
+  }, [messages, friendId]);
 
   const handleSendMessage = (content: string) => {
     const newMessage: Message = {
@@ -55,10 +69,10 @@ const ChatRoom: React.FC = () => {
   };
 
   const handleSwitchPosition = () => {
-    setCurrentUser(prev => (prev.name === usersData.users[0].name ? usersData.users[1] : usersData.users[0]));
+    setCurrentUser(prev => (prev.name === usersData.users[0].name ? selectedFriend : usersData.users[0]));
   };
 
-  const oppositeUser = currentUser.name === usersData.users[0].name ? usersData.users[1] : usersData.users[0];
+  const oppositeUser = currentUser.name === usersData.users[0].name ? selectedFriend : usersData.users[0];
 
   return (
     <ChatRoomContainer>
@@ -94,7 +108,6 @@ const ChatRoom: React.FC = () => {
 };
 
 export default ChatRoom;
-
 const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -117,7 +130,7 @@ const ChatRoomContainer = styled.div`
   margin: 0px auto;
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 5px;
+  padding: 12px;
   min-height: 100vh;
 `;
 
@@ -125,8 +138,8 @@ const MessageWrapper = styled.div<{ sender: string; currentUser: string }>`
   display: flex;
   align-items: center;
   flex-direction: ${props => (props.sender === props.currentUser ? "row-reverse" : "row")};
-  gap: 12px;
-  margin: 12px 0;
+  gap: 4px;
+  margin: 4px 0;
   max-width: 100%;
   align-self: ${props => (props.sender === props.currentUser ? "flex-end" : "flex-start")};
 `;
@@ -136,13 +149,14 @@ const MessageBubble = styled.div<{ sender: string; currentUser: string; shouldDi
   border-radius: 20px;
   background-color: ${props => (props.sender === props.currentUser ? "#101010" : "#F1F1F1")};
   color: ${props => (props.sender === props.currentUser ? "#F1F1F1" : "#101010")};
-  margin-left: ${props => (!props.shouldDisplayProfile && props.sender !== props.currentUser) ? "44px" : "0"};
+  margin-left: ${props => (!props.shouldDisplayProfile && props.sender !== props.currentUser) ? "36px" : "0"};
   font-size: 14px;
   font-weight: 400;
   line-height: 19.60px;
   box-sizing: border-box;
   max-width: fit-content;
   word-break: break-all;
+  white-space: pre-wrap;
 `;
 
 const ProfileImage = styled.div`
@@ -157,5 +171,5 @@ const Time = styled.div`
   font-size: 7px;
   font-weight: 500;
   line-height: 10px;
-  margin-top: 12px;
+  margin-top: 30px;
 `;
