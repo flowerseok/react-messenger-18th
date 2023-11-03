@@ -28,7 +28,7 @@ const IndicateBar: React.FC<IndicateBarProps> = ({ activeIcon }) => {
         navigate('/userprofile')
     }
     const goToGoogle = () => {
-      if (window.confirm("구글 ㄱㄱ?")) {
+      if (window.confirm("구글")) {
         window.open("https://www.google.com", "_blank");
     }
     }

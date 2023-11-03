@@ -9,12 +9,12 @@ import instagramIconSrc from '../assets/images/Instagram1.svg';
 import githubIconSrc from '../assets/images/Github1.svg';
 const UserProfile: React.FC = () => {
   const goToGithub = () => {
-    if (window.confirm("깃허브 ㄱㄱ?")) {
+    if (window.confirm("깃허브")) {
       window.open("https://www.github.com", "_blank");
   }
   }
   const goToinsta = () => {
-    if (window.confirm("인스타 ㄱㄱ?")) {
+    if (window.confirm("인스타")) {
       window.open("https://www.instagram.com", "_blank");
   }
   }
@@ -30,15 +30,19 @@ const UserProfile: React.FC = () => {
       <ProfileWrapper>
         <SocialLinks>
           <LinkItem>
+            <LinkContent>
             <img src={instagramIconSrc} alt="Instagram" />
             <LinkName>Instagram</LinkName>
+            </LinkContent>
             <LinkIconStyled onClick={goToinsta} />
           </LinkItem>
           <LinkItem>
+            <LinkContent>
             <img src={githubIconSrc} alt="Github" />
             <LinkName>
             GitHub
             </LinkName>
+            </LinkContent>
             <LinkIconStyled onClick={goToGithub} />
           </LinkItem>
         </SocialLinks>
@@ -64,6 +68,7 @@ const LinkIconStyled = styled(LinkIconSrc)`
   width: 24px;
   height: 24px;
   cursor: pointer;
+  color: #909090;
 `;
 
 const ProfileContainer = styled.div`
@@ -117,4 +122,9 @@ const LinkItem = styled.div`
   font-size: 14px;
   margin: 14px 0;
   color: #101010;
+`;
+const LinkContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
 `;
