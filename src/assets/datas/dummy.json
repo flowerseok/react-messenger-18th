@@ -7,22 +7,42 @@
       },
        {
           "id": 1,
-          "name": "지석",
+          "name": "김민지",
           "profileImage": "ProfileIcon"
        },
        {
           "id": 2,
-          "name": "형찬",
+          "name": "배수연",
           "profileImage": "ProfileIcon"
        },
        {
          "id": 3,
-         "name": "정민",
+         "name": "배은환",
          "profileImage": "ProfileIcon"
       },
       {
          "id": 4,
-         "name": "태영",
+         "name": "신현재",
+         "profileImage": "ProfileIcon"
+      },
+      {
+         "id": 5,
+         "name": "소혜린",
+         "profileImage": "ProfileIcon"
+      },
+      {
+         "id": 6,
+         "name": "염혜인",
+         "profileImage": "ProfileIcon"
+      },
+      {
+         "id": 7,
+         "name": "윤서윤",
+         "profileImage": "ProfileIcon"
+      },
+      {
+         "id": 8,
+         "name": "이예진",
          "profileImage": "ProfileIcon"
       }
     ]
